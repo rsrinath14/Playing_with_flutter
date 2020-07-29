@@ -13,7 +13,14 @@ class MyApp extends StatelessWidget {
         title: Center(child: Icon(Icons.home)),
         backgroundColor: Colors.teal[700],
       ),
-      body: Text('The sky is blue'),
+      body: Center(
+        child: Container(
+          margin: const EdgeInsets.all(10.0),
+          color: Colors.amber[600],
+          width: 48.0,
+          height: 48.0,
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_shopping_cart),
         backgroundColor: Colors.teal[700],
