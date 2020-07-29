@@ -32,8 +32,9 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
+      child: ListView(
+        padding: EdgeInsets.all(8),
+        children: <Widget>[
           Container(
             height: 50,
           ),
@@ -67,14 +68,24 @@ class _MyWidgetState extends State<MyWidget> {
           Container(
             height: 50,
           ),
-          CheckboxListTile(
-            title: Text('Using a CheckBox'),
-            value: checkedValue,
-            onChanged: (newValue) {
-              _checkBox(newValue);
-            },
-            controlAffinity: ListTileControlAffinity.leading,
+          Center(
+            child: CheckboxListTile(
+              title: Text('Using a CheckBox'),
+              value: checkedValue,
+              onChanged: (newValue) {
+                _checkBox(newValue);
+              },
+              controlAffinity: ListTileControlAffinity.leading,
+            ),
           ),
+          Container(
+            height: 50,
+          ),
+          RaisedButton(
+              child: Text('Alert'),
+              onPressed: () {
+                _showAlertDialog();
+              }),
         ],
       ),
     );
@@ -98,5 +109,28 @@ class _MyWidgetState extends State<MyWidget> {
     setState(() {
       checkedValue = isChecked;
     });
+  }
+
+  void _showAlertDialog() {
+    Widget okButton = FlatButton(
+      child: Text("Ok"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Dialog title"),
+      content: Text("This is a Flutter AlertDialog."),
+      actions: [
+        okButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
