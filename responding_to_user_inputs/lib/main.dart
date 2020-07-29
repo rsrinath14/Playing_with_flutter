@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() => runApp(MyApp());
 
@@ -28,6 +29,7 @@ class _MyWidgetState extends State<MyWidget> {
   String textString = 'Hello World!';
   String textBox = 'Type Something';
   bool checkedValue = false;
+  Color textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
@@ -119,9 +121,40 @@ class _MyWidgetState extends State<MyWidget> {
                   _showDangerAlert(context);
                 }),
           ),
+          Container(
+            height: 50,
+          ),
+          Center(
+            child: GestureDetector(
+              //                  <--- GestureDetector
+              child: Text(
+                'Hello world',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: textColor,
+                ),
+              ),
+              onTap: () {
+                //                            <--- onTap
+                _doColor();
+              },
+            ),
+          ),
+          Container(
+            height: 50,
+          ),
         ],
       ),
     );
+  }
+
+  void _doColor() {
+    setState(() {
+      // have to import 'dart:math' in order to use Random()
+      int randomHexColor = Random().nextInt(0xFFFFFF);
+      int opaqueColor = 0xFF000000 + randomHexColor;
+      textColor = Color(opaqueColor);
+    });
   }
 
   void _doSomething() {
