@@ -27,6 +27,7 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   String textString = 'Hello World!';
   String textBox = 'Type Something';
+  bool checkedValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,18 @@ class _MyWidgetState extends State<MyWidget> {
                 _textchange(text);
               },
             ),
-          )
+          ),
+          Container(
+            height: 50,
+          ),
+          CheckboxListTile(
+            title: Text('Using a CheckBox'),
+            value: checkedValue,
+            onChanged: (newValue) {
+              _checkBox(newValue);
+            },
+            controlAffinity: ListTileControlAffinity.leading,
+          ),
         ],
       ),
     );
@@ -79,6 +91,12 @@ class _MyWidgetState extends State<MyWidget> {
   void _textchange(String text) {
     setState(() {
       textBox = text;
+    });
+  }
+
+  void _checkBox(bool isChecked) {
+    setState(() {
+      checkedValue = isChecked;
     });
   }
 }
