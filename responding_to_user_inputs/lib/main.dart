@@ -42,12 +42,14 @@ class _MyWidgetState extends State<MyWidget> {
             textString,
             style: TextStyle(fontSize: 30),
           ),
-          RaisedButton(
-            //
-            child: Text('Button'),
-            onPressed: () {
-              _doSomething();
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
+            child: RaisedButton(
+              child: Text('Click me!'),
+              onPressed: () {
+                _doSomething();
+              },
+            ),
           ),
           Container(
             height: 50,
@@ -57,7 +59,7 @@ class _MyWidgetState extends State<MyWidget> {
             style: TextStyle(fontSize: 40),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
             child: TextField(
               style: TextStyle(fontSize: 20),
               onChanged: (text) {
@@ -81,11 +83,42 @@ class _MyWidgetState extends State<MyWidget> {
           Container(
             height: 50,
           ),
-          RaisedButton(
-              child: Text('Alert'),
-              onPressed: () {
-                _showAlertDialog();
-              }),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
+            child: RaisedButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Text('Alert!'),
+                onPressed: () {
+                  _showAlertDialog();
+                }),
+          ),
+          Container(
+            height: 2.5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
+            child: RaisedButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Text('Alert Again!'),
+                onPressed: () {
+                  _showAlertagainDialog(context);
+                }),
+          ),
+          Container(
+            height: 2.5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2.5),
+            child: RaisedButton(
+                color: Colors.red[300],
+                textColor: Colors.white,
+                child: Text('Danger Alert!'),
+                onPressed: () {
+                  _showDangerAlert(context);
+                }),
+          ),
         ],
       ),
     );
@@ -124,6 +157,74 @@ class _MyWidgetState extends State<MyWidget> {
       content: Text("This is a Flutter AlertDialog."),
       actions: [
         okButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void _showAlertagainDialog(BuildContext context) {
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Continue"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Alert Dialog"),
+      content: Text("Do You Want to Continue learning Flutter?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void _showDangerAlert(BuildContext context) {
+    Widget cancelButton = FlatButton(
+      child: Text("Abort!"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget remindButton = FlatButton(
+      child: Text("Remind me Later"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget launchBotton = FlatButton(
+      child: Text("Launch!"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Danger!"),
+      content: Text(
+          "Launching this missile will destroy the entire universe. Is this what you intended to do?"),
+      actions: [
+        cancelButton,
+        remindButton,
+        launchBotton,
       ],
     );
     showDialog(
