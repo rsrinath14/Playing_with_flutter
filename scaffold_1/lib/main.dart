@@ -13,13 +13,43 @@ class MyApp extends StatelessWidget {
         title: Center(child: Icon(Icons.home)),
         backgroundColor: Colors.teal[700],
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(10.0),
-          color: Colors.amber[600],
-          width: 48.0,
-          height: 48.0,
-        ),
+      body: Column(
+        children: <Widget>[
+          Center(
+            child: Container(
+              height: 100,
+            ),
+          ),
+          Center(
+            child: Container(
+              margin: const EdgeInsets.all(10.0),
+              color: Colors.amber[600],
+              width: 48.0,
+              height: 48.0,
+            ),
+          ),
+          Center(
+            child: Container(
+              height: 50,
+            ),
+          ),
+          Center(
+              child: Container(
+            constraints: BoxConstraints.expand(
+              height:
+                  Theme.of(context).textTheme.headline4.fontSize * 1.1 + 200.0,
+            ),
+            padding: const EdgeInsets.all(8.0),
+            color: Colors.blue[600],
+            alignment: Alignment.center,
+            child: Text('Hello World',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4
+                    .copyWith(color: Colors.white)),
+            transform: Matrix4.rotationZ(0.1),
+          )),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_shopping_cart),
